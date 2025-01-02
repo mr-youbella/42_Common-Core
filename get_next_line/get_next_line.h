@@ -1,23 +1,31 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youbella <youbella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 20:37:21 by youbella          #+#    #+#             */
-/*   Updated: 2024/11/14 20:28:40 by youbella         ###   ########.fr       */
+/*   Created: 2024/12/12 11:22:48 by youbella          #+#    #+#             */
+/*   Updated: 2025/01/02 11:08:24 by youbella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	ft_bzero(void *s, size_t n)
-{
-	size_t	i;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-	i = 0;
-	while (i < n)
-		((unsigned char *)s)[i++] = 0;
-}
+# include <unistd.h>
+# include <limits.h>
+# include <stdlib.h>
+
+char	*get_next_line(int fd);
+size_t	ft_strlen(const char *str);
+void	*ft_calloc(size_t count, size_t size);
+char	*ft_strchr(const char *str, int c);
+char	*ft_strdup(const char *s1);
+char	*ft_strjoin(char *s1, const char *s2);
+
+#endif
