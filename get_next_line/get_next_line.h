@@ -6,7 +6,7 @@
 /*   By: youbella <youbella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:22:48 by youbella          #+#    #+#             */
-/*   Updated: 2025/01/02 11:08:24 by youbella         ###   ########.fr       */
+/*   Updated: 2025/01/17 01:19:10 by youbella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *str);
-void	*ft_calloc(size_t count, size_t size);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char *s1, const char *s2);

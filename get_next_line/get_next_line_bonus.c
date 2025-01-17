@@ -6,7 +6,7 @@
 /*   By: youbella <youbella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:20:41 by youbella          #+#    #+#             */
-/*   Updated: 2025/01/02 10:43:43 by youbella         ###   ########.fr       */
+/*   Updated: 2025/01/17 01:32:40 by youbella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ static char	*ft_line(char *str, int fd)
 	char	*buffer;
 	ssize_t	r;
 
-	buffer = ft_calloc((size_t)BUFFER_SIZE + 1, 1);
+	buffer = malloc((size_t)BUFFER_SIZE + 1);
 	if (!buffer)
 		return (free(str), NULL);
+	buffer[0] = 0;
 	while (!ft_strchr(buffer, '\n'))
 	{
 		r = read(fd, buffer, BUFFER_SIZE);
@@ -42,9 +43,9 @@ static char	*ft_next_line(char *line)
 	if (line[i] == '\n')
 		i++;
 	next_line = ft_strdup(&line[i]);
-	line[i] = 0;
 	if (!next_line)
 		return (free(line), NULL);
+	line[i] = 0;
 	return (next_line);
 }
 
@@ -54,7 +55,9 @@ char	*get_next_line(int fd)
 	char		*buffer;
 	char		*line;
 
-	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || fd > OPEN_MAX)
+		return (NULL);
+	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (free(nl[fd]), nl[fd] = NULL, NULL);
 	line = ft_line(nl[fd], fd);
 	if (!line)

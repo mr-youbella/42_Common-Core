@@ -6,7 +6,7 @@
 /*   By: youbella <youbella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:20:41 by youbella          #+#    #+#             */
-/*   Updated: 2025/01/02 10:53:31 by youbella         ###   ########.fr       */
+/*   Updated: 2025/01/17 01:32:18 by youbella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ static char	*ft_line(char *str, int fd)
 	char	*buffer;
 	ssize_t	r;
 
-	buffer = ft_calloc((size_t)BUFFER_SIZE + 1, 1);
+	buffer = malloc((size_t)BUFFER_SIZE + 1);
 	if (!buffer)
 		return (free(str), NULL);
+	buffer[0] = 0;
 	while (!ft_strchr(buffer, '\n'))
 	{
 		r = read(fd, buffer, BUFFER_SIZE);
@@ -58,7 +59,7 @@ char	*get_next_line(int fd)
 		return (free(nl), nl = NULL, NULL);
 	line = ft_line(nl, fd);
 	if (!line)
-		return (nl = NULL, NULL);
+		return (nl = ((void *)0), NULL);
 	if (!*line)
 		return (free(nl), nl = NULL, NULL);
 	nl = ft_next_line(line);
